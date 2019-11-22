@@ -1,4 +1,4 @@
-#!/bin/sh -l
+#!/bin/bash
  
 rm -f $1 
 while IFS= read -r -d '' FILE
