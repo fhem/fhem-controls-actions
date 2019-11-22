@@ -4,7 +4,7 @@ This action creates FHEM controls file via github actions which is compatible wi
 
 ## Inputs
 
-### `filenmae`
+### `filename`
 
 **Required** The name of controls file. Should be named <project/module>_controls.txt
 ## Outputs
