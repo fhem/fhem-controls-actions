@@ -6,7 +6,8 @@ This action creates FHEM controls file via github actions which is compatible wi
 
 ### `filename`
 
-**Required** The name of controls file. Should be named <project/module>_controls.txt
+**Required** The name of controls file. Should be named `<project/module>_controls.txt`
+
 ## Outputs
 
 ### `return code`
@@ -14,7 +15,8 @@ This action creates FHEM controls file via github actions which is compatible wi
 If a control file was created or nor
 
 ## Example usage
-
+```
 uses: actions/fhem-controls-actions@v1
 with:
   filename: 'rsl_controls.txt'
+```
