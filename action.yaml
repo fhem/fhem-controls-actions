@@ -11,7 +11,7 @@ outputs:
     result: 'If controls file was written'
 runs:
   using: 'node12'
-  main: 'lib/main.js'
+  main: 'main.ts'
   args:
     - ${{ inputs.filename }}
     - 'FHEM'
