@@ -1,9 +1,10 @@
-var  fs=require('fs');
+const fs=require('fs');
+const core = require('@actions/core');
+const github = require('@actions/github');
 
-var myArgs = process.argv.slice(2);
-var filename=myArgs[0];
-var path=myArgs[1];
-var extension=myArgs[2];
+var filename = core.getInput('filename');
+var path=core.getInput('directory');
+var extension=core.getInput('extension');
 
 
 function getDataFromPath(path, extension) {

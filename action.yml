@@ -6,13 +6,17 @@ inputs:
     description: '<projectname>_controls.txt'
     required: true
     default: 'local_controls.txt'
+  directory: 
+    description: 'directory where to search for files. Default is FHEM'
+    required: false
+    default: 'FHEM'
+  extension: 
+    description: 'Extension to include. Default is .pm'
+    required: false
+    default: '.pm'
 outputs:
   time: # id of output
     result: 'If controls file was written'
 runs:
   using: 'node12'
   main: 'main.js'
-  args:
-    - ${{ inputs.filename }}
-    - 'FHEM'
-    - '.pm'
