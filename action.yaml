@@ -10,7 +10,8 @@ outputs:
   time: # id of output
     result: 'If controls file was written'
 runs:
-  using: 'docker'
-  image: 'Dockerfile'
+  using: 'node12'
+  main: 'lib/main.js'
   args:
     - ${{ inputs.filename }}
+runs:
