@@ -14,4 +14,3 @@ runs:
   main: 'lib/main.js'
   args:
     - ${{ inputs.filename }}
-runs:
