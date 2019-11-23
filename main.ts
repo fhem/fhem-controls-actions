@@ -1,6 +1,9 @@
-var path = require('path'), fs=require('fs');
+var  fs=require('fs');
 
-	
+var myArgs = process.argv.slice(2);
+var filename=myArgs[0];
+var path=myArgs[1];
+var extension=myArgs[2];
 
 
 function getDataFromPath(path, extension) {
@@ -18,10 +21,7 @@ function getDataFromPath(path, extension) {
 
 }
 
-let filename = 'rsl_controls.txt';
-
-
-var update_commands = getDataFromPath("FHEM", ".pm");
+var update_commands = getDataFromPath(path, extension);
 
 var file = fs.createWriteStream(filename);
 file.on('error', function(err) { Console.log(err) });
