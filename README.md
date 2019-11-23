@@ -1,6 +1,7 @@
-# fhem-controls-actions docker action
+# fhem-controls-actions JavaScript action
 
-This action creates FHEM controls file via github actions which is compatible with `fhem update all` and `fhem update add` command.
+This action creates FHEM controls file via github actions which is compatible with `update all <url>` and `update add <url>` command.
+More details about this command at the [Fhem Wiki](https://wiki.fhem.de/wiki/Update#update_all).
 
 ## Inputs
 
@@ -8,15 +9,32 @@ This action creates FHEM controls file via github actions which is compatible wi
 
 **Required** The name of controls file. Should be named `<project/module>_controls.txt`
 
+### `dirname`
+
+**Optional** The name of the directory where the files are located which should be updated `FHEM`
+
+### `extension`
+
+**Optional** The file extension which should be included in the controls file. Normally `.pm` for Perl Modules.
+
 ## Outputs
-
-### `return code`
-
-If a control file was created or nor
+none
 
 ## Example usage
+1. Checkout the repository
+
 ```
-uses: actions/fhem-controls-actions@v1
-with:
-  filename: 'rsl_controls.txt'
+    steps: 
+    - name: Checkout Repostory
+      uses: actions/checkout@v1
 ```
+
+2. You can create the controls file
+```
+    - name: update controls files
+      uses: sidey79/fhem-controls-actions@master
+      with:
+        filename: controls_rsl.txt 
+```
+...
+Push back the changes
