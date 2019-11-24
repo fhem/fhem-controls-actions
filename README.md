@@ -32,7 +32,7 @@ none
 2. You can create the controls file
 ```
     - name: update controls files
-      uses: sidey79/fhem-controls-actions@master
+      uses: fhem/fhem-controls-actions@master
       with:
         filename: controls_rsl.txt 
 ```
