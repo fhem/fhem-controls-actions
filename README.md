@@ -7,7 +7,7 @@ More details about this command at the [Fhem Wiki](https://wiki.fhem.de/wiki/Upd
 
 ### `filename`
 
-**Required** The name of controls file. Should be named `<project/module>_controls.txt`
+**Required** The name of controls file. Should be named `controls_<project/module>.txt`
 
 ### `dirname`
 
