@@ -8,15 +8,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/sidey79/fhem-controls-actions.git"
+    "url": "git+https://github.com/fhem/fhem-controls-actions.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/sidey79/fhem-controls-actions/issues"
+    "url": "https://github.com/fhem/fhem-controls-actions/issues"
   },
-  "homepage": "https://github.com/sidey79/fhem-controls-actions#readme",
+  "homepage": "https://github.com/fhem/fhem-controls-actions#readme",
   "dependencies": {
     "@actions/core": "^1.2.0",
     "@actions/github": "^1.1.0"
