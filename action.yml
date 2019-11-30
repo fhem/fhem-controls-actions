@@ -3,7 +3,7 @@ name: 'Update controls file'
 description: 'Greet someone and record the time'
 inputs:
   filename:  
-    description: '<projectname>_controls.txt'
+    description: 'controls_<projectname>.txt'
     required: true
     default: 'controls_local.txt'
   directory: 
@@ -14,6 +14,10 @@ inputs:
     description: 'Extension to include. Default is .pm'
     required: false
     default: '.pm'
+  writemode: 
+    description: 'Append (a) or overwrite (w) mode for controls file'
+    required: false
+    default: 'w'
 outputs:
   time: # id of output
     result: 'If controls file was written'
