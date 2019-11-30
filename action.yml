@@ -5,7 +5,7 @@ inputs:
   filename:  
     description: '<projectname>_controls.txt'
     required: true
-    default: 'local_controls.txt'
+    default: 'controls_local.txt'
   directory: 
     description: 'directory where to search for files. Default is FHEM'
     required: false
