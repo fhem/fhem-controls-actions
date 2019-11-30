@@ -1,5 +1,5 @@
 # action.yml
-name: 'Hello World'
+name: 'Update controls file'
 description: 'Greet someone and record the time'
 inputs:
   filename:  
