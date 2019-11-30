@@ -15,7 +15,12 @@ More details about this command at the [Fhem Wiki](https://wiki.fhem.de/wiki/Upd
 
 ### `extension`
 
-**Optional** The file extension which should be included in the controls file. Normally `.pm` for Perl Modules.
+**Optional** The file extension which should be included in the controls file. Normaly `.pm` for Perl Modules.
+
+### `writemode`
+
+**Optional** You can controle the writemode which is used to open the file. Default w, which will create or truncate the controls file.
+If you want to append data, to an existing controls file, then you can specify the value a for writemode.
 
 ## Outputs
 none
