@@ -9,7 +9,7 @@ More details about this command at the [Fhem Wiki](https://wiki.fhem.de/wiki/Upd
 
 **Required** The name of controls file. Should be named `controls_<project/module>.txt`
 
-### `dirname`
+### `directory`
 
 **Optional** The name of the directory where the files are located which should be updated `FHEM`
 
