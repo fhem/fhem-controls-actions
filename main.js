@@ -15,6 +15,8 @@ function getDataFromPath(path, extension) {
 		const fileSizeInBytes = fs.statSync(path+'/'+file).size.toString().padEnd(7," ");
 		const { spawnSync  } = require('child_process');
 		var timestamp = spawnSync('git', ['log', '--pretty=format:%ad', '-n 1', '--date=format:%Y-%m-%d\_%H:%M:%S' ,'--', path+'/'+file]).stdout.toString() ;
+		console.log(path+'/'+file);
+		console.log(timestamp);
 		response.push("UPD "+timestamp+" "+fileSizeInBytes+path+"/"+file);
 	}
 
