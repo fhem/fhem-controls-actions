@@ -14,7 +14,7 @@ function getDataFromPath(path, extension) {
 	for (let file of files) {
 		const fileSizeInBytes = fs.statSync(path+'/'+file).size.toString().padEnd(7," ");
 		const { spawnSync  } = require('child_process');
-		const timestamp = spawnSync('git', ['log', '--pretty=format:%cd', '-n 1', '--date=format:%Y-%m-%d\_%H:%M:%S' ,'--', path+'/'+file]).stdout.toString() ;
+		var timestamp = spawnSync('git', ['log', '--pretty=format:%ad', '-n 1', '--date=format:%Y-%m-%d\_%H:%M:%S' ,'--', path+'/'+file]).stdout.toString() ;
 		response.push("UPD "+timestamp+" "+fileSizeInBytes+path+"/"+file);
 	}
 
