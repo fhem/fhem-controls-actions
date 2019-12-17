@@ -32,6 +32,9 @@ none
     steps: 
     - name: Checkout Repostory
       uses: actions/checkout@v1
+      with:
+        fetch-depth: 0
+
 ```
 
 2. You can create the controls file
