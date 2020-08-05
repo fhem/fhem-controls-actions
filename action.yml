@@ -20,7 +20,7 @@ inputs:
     default: 'w'
 outputs:
   time: # id of output
-    result: 'If controls file was written'
+    description: 'If controls file was written'
 runs:
   using: 'node12'
   main: 'main.js'
