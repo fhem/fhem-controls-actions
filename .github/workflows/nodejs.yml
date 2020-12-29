@@ -19,6 +19,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
-    - uses: ./
+    - name: Run Action
+      uses: ./
       with:
-        milliseconds: 1000
+        filename: controls_tests.txt
+        directory: ./t
+        extension: .ts
