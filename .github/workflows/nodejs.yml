@@ -1,4 +1,4 @@
-name: "units-test"
+name: "Test Jobs"
 
 on:
   pull_request:
@@ -7,7 +7,7 @@ on:
 
 jobs:
   # unit tests
-  units:
+  unittest:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
@@ -19,7 +19,7 @@ jobs:
     - run: npm test
 
   # test action works running from the graph
-  test:
+  actiontest:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
