@@ -4,17 +4,14 @@
   "description": "This action creates FHEM controls file via github actions which is compatible with `fhem update all` and `fhem update add` command.",
   "main": "main.js",
   "scripts": {
-    "lint": "eslint .",
-    "prepare": "ncc build main.js -o dist --source-map",
-    "test": "jest",
-    "all": "npm run lint && npm run prepare && npm run test"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/fhem/fhem-controls-actions.git"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": ["fhem", "controls", "file", "update"],
+  "author": "sidey79",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/fhem/fhem-controls-actions/issues"
