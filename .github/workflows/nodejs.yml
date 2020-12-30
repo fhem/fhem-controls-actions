@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: [12.x, 14.x ,15.x]
+        node-version: [10.x, 12.x ,14.x]
 
     steps:
     - uses: actions/checkout@v2
@@ -19,7 +19,7 @@ jobs:
         fetch-depth: 0
 
     - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v1
+      uses: actions/setup-node@v2
       with:
         node-version: ${{ matrix.node-version }}
     
@@ -40,9 +40,7 @@ jobs:
         fetch-depth: 0
 
     - name: Use Node.js 12
-      uses: actions/setup-node@v1
-      with:
-        node-version: 12.x
+      uses: actions/setup-node@v2
 
     - run: npm ci
 
