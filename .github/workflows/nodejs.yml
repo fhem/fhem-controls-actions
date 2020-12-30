@@ -11,7 +11,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
+      with:
+        fetch-depth: 0
+
     - run: npm ci
+
     - run: npm test
 
   # test action works running from the graph
@@ -19,9 +23,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
+      with:
+        fetch-depth: 0
+
+    - run: npm ci
+
     - name: Run Action
       uses: ./
       with:
         filename: controls_tests.txt
-        directory: ./t
-        extension: .ts
+        directory: ./__tests__
+        extension: .pm
