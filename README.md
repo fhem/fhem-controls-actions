@@ -1,4 +1,4 @@
-# fhem-controls-actions JavaScript action
+# fhem-controls-actions JavaScript action (Version 1)
 
 This action creates FHEM controls file via github actions which is compatible with `update all <url>` and `update add <url>` command.
 More details about this command at the [Fhem Wiki](https://wiki.fhem.de/wiki/Update#update_all).
@@ -40,7 +40,7 @@ none
 2. You can create the controls file
 ```
     - name: update controls files
-      uses: fhem/fhem-controls-actions@master
+      uses: fhem/fhem-controls-actions@v1
       with:
         filename: controls_rsl.txt 
 ```
