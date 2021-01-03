@@ -1,22 +1,28 @@
-name: Node CI
+name: "Test Jobs"
 
-on: [push]
+on:
+  pull_request:
+  push:
+
 
 jobs:
-  build:
-
+  # unit tests
+  unittest:
     runs-on: ubuntu-latest
-
     strategy:
       matrix:
-        node-version: [8.x, 10.x, 12.x]
+        node-version: [10.x, 12.x ,14.x]
 
     steps:
-    - uses: actions/checkout@v1
+    - uses: actions/checkout@v2
+      with:
+        fetch-depth: 0
+
     - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v1
+      uses: actions/setup-node@v2
       with:
         node-version: ${{ matrix.node-version }}
+    
     - name: npm install, build, and test
       run: |
         npm ci
@@ -24,3 +30,23 @@ jobs:
         npm test
       env:
         CI: true
+
+  # test action works running from the graph
+  actiontest:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        fetch-depth: 0
+
+    - name: Use Node.js 12
+      uses: actions/setup-node@v2
+
+    - run: npm ci
+
+    - name: Run Action
+      uses: ./
+      with:
+        filename: controls_tests.txt
+        directory: ./__tests__
+        extension: .pm

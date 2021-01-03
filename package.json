@@ -4,14 +4,20 @@
   "description": "This action creates FHEM controls file via github actions which is compatible with `fhem update all` and `fhem update add` command.",
   "main": "main.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest",
+    "all": "npm run lint && npm run prepare && npm run test"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/fhem/fhem-controls-actions.git"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": [
+    "fhem",
+    "controls",
+    "file",
+    "update"
+  ],
+  "author": "sidey79",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/fhem/fhem-controls-actions/issues"
@@ -19,6 +25,10 @@
   "homepage": "https://github.com/fhem/fhem-controls-actions#readme",
   "dependencies": {
     "@actions/core": "^1.2.6",
-    "@actions/github": "^1.1.0"
+    "@actions/github": "^4.0.0"
+  },
+  "devDependencies": {
+    "eslint": "^7.4.0",
+    "jest": "^26.6.3"
   }
 }
