@@ -62,7 +62,15 @@ jobs:
         allow_failure: false
 
     - name: Check if controls_tests.txt has correct output
+      id: contentCheck
       run: |
         set +e
         grep "^UPD 2020-02-30_03:02:16 33     ./__tests__/mock.pm$" ${{ env.CONTROLS_FILE }}
+        echo "::set-output name=exitcode::$(echo $?)"
         set -e
+
+    - name: Fail if there was an error during tests
+      run: exit 1
+      if: ${{ steps.contentCheck.outputs.exitcode != 0 }} 
+
+
