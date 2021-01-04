@@ -54,7 +54,6 @@ jobs:
         filename: ${{ env.CONTROLS_FILE }}
         directory: ./__tests__
         extension: .pm
-        - name: "Check file existence"
 
     - name: Check if controls_tests.txt is written
       uses: andstor/file-existence-action@v1
