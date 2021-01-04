@@ -1,5 +1,3 @@
-/* eslint-env node */
-
 const fs=require('fs');
 const core = require('@actions/core');
 const getDataFromPath = require('./src/func');
