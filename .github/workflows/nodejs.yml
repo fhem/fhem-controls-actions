@@ -35,8 +35,8 @@ jobs:
   actiontest:
     env:
       CONTROLS_FILE: controls_tests.txt
-      FILES_DIR: www/images/mdt/
-      FILES_EXTENSION: .svg
+      FILES_DIR: ./__tests__
+      FILES_EXTENSION: .pm
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
@@ -52,8 +52,8 @@ jobs:
       uses: ./
       with:
         filename: ${{ env.CONTROLS_FILE }}
-        directory: ./__tests__
-        extension: .pm
+        directory: ${{ env.FILES_DIR }}
+        extension: ${{ env.FILES_EXTENSION }}
 
     - name: Check if controls_tests.txt is written
       uses: andstor/file-existence-action@v1
@@ -61,8 +61,8 @@ jobs:
         files: ${{ env.CONTROLS_FILE }}
         allow_failure: false
 
-    - name: Check if controls_tests.txt is written
+    - name: Check if controls_tests.txt has correct output
       run: |
         set +e
-        grep "^UPD 2020-12-30_03:02:16 33     ./__tests__/mock.pm$" ${{ env.CONTROLS_FILE }}
+        grep "^UPD 2020-02-30_03:02:16 33     ./__tests__/mock.pm$" ${{ env.CONTROLS_FILE }}
         set -e
