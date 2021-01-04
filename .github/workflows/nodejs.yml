@@ -49,6 +49,7 @@ jobs:
     - run: npm ci
 
     - name: Run fhem-controls-action
+      id: controls
       uses: ./
       with:
         filename: ${{ env.CONTROLS_FILE }}
@@ -68,6 +69,12 @@ jobs:
         grep "^UPD 2020-12-30_03:02:16 33     ./__tests__/mock.pm$" ${{ env.CONTROLS_FILE }}
         echo "::set-output name=exitcode::$(echo $?)"
         set -e
+
+    - name: Check if controls output has entries as expected
+      run: |
+        echo "${{ steps.controls.outputs.controls_content }}"
+
+
 
     - name: Fail if there was an error during tests
       run: exit 1

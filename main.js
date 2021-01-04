@@ -17,4 +17,4 @@ update_commands.forEach(value => file.write(`${value}\n`));
 file.end();
 core.info('controls file' + filename + ' written');
 
-core.setOutput('controls_output',update_commands.toString());
+core.setOutput('controls_content',update_commands);

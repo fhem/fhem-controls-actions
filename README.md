@@ -23,7 +23,7 @@ More details about this command at the [Fhem Wiki](https://wiki.fhem.de/wiki/Upd
 If you want to append data, to an existing controls file, then you can specify the value a for writemode.
 
 ## Outputs
-### `colteols_output`
+### `controls_content`
 Same content which is also written into the controls file
 
 

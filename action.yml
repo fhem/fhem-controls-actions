@@ -19,7 +19,7 @@ inputs:
     required: false
     default: 'w'
 outputs:
-  controls_output: # id of output
+  controls_content: 
     description: 'If controls file was written'
 runs:
   using: 'node12'
