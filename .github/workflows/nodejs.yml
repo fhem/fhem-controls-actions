@@ -33,6 +33,10 @@ jobs:
 
   # test action works running from the graph
   actiontest:
+    env:
+      CONTROLS_FILE: controls_tests.txt
+      FILES_DIR: www/images/mdt/
+      FILES_EXTENSION: .svg
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
@@ -44,9 +48,22 @@ jobs:
 
     - run: npm ci
 
-    - name: Run Action
+    - name: Run fhem-controls-action
       uses: ./
       with:
-        filename: controls_tests.txt
+        filename: ${{ env.CONTROLS_FILE }}
         directory: ./__tests__
         extension: .pm
+        - name: "Check file existence"
+
+    - name: Check if controls_tests.txt is written
+      uses: andstor/file-existence-action@v1
+      with:
+        files: ${{ env.CONTROLS_FILE }}
+        allow_failure: false
+
+    - name: Check if controls_tests.txt is written
+      run: |
+        set +e
+        grep "^UPD 2020-12-30_03:02:16 33     ./__tests__/mock.pm$" ${{ env.CONTROLS_FILE }}
+        set -e
