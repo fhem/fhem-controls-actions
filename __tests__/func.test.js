@@ -1,3 +1,5 @@
+/* eslint-env node */
+
 const getDataFromPath = require('../src/func');
 
 test('gen controls content for pm file', () => {
