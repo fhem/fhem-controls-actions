@@ -65,7 +65,7 @@ jobs:
       id: contentCheck
       run: |
         set +e
-        grep "^UPD 2020-02-30_03:02:16 33     ./__tests__/mock.pm$" ${{ env.CONTROLS_FILE }}
+        grep "^UPD 2020-12-30_03:02:16 33     ./__tests__/mock.pm$" ${{ env.CONTROLS_FILE }}
         echo "::set-output name=exitcode::$(echo $?)"
         set -e
 
