@@ -16,6 +16,9 @@ More details about this command at the [Fhem Wiki](https://wiki.fhem.de/wiki/Upd
 ### `extension`
 
 **Optional** The file extension which should be included in the controls file. Normaly `.pm` for Perl Modules.
+You can specify multiple extions by separing them with '|'. To get all '.pm' and all '.json' files you can write '.pm|.json'. 
+
+**Note**: The extemsion string itself will be interpreded as a regex which acts as a filter on the files. The filename must end with one of the given extions. Dots are always escaped and interpreded as a dot and not as a wildcard for any char.
 
 ### `writemode`
 
