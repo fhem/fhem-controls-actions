@@ -50,12 +50,6 @@ jobs:
       with:
         fetch-depth: 0
 
-    - id: get_version
-      uses: battila7/get-version-action@v2
-
-    - run: echo ${{ steps.get_version.outputs.version }}
-    - run: echo ${{ steps.get_version.outputs.version-without-v }}
-
     - name: update controls files for extension ${{ matrix.FILES_EXTENSION }} 
       uses: ./
       id: controls
@@ -70,7 +64,7 @@ jobs:
         files: ${{ env.CONTROLS_FILE }}
         allow_failure: false
 
-    - name: Check if controls_tests.txt has correct output
+    - name: Check if controls_tests.txt has correct output for extension ${{ matrix.FILES_EXTENSION }}
       id: contentCheck
       run: |
         case "${{ matrix.FILES_EXTENSION }}"  in
