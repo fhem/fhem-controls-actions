@@ -43,11 +43,6 @@ jobs:
       with:
         fetch-depth: 0
 
-    - name: Use Node.js 12
-      uses: actions/setup-node@v2
-
-    - run: npm ci
-
     - name: Run fhem-controls-action
       id: controls
       uses: ./
