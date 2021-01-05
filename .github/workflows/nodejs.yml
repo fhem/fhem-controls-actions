@@ -70,19 +70,19 @@ jobs:
         case "${{ matrix.FILES_EXTENSION }}"  in
         ".pm")
                 [ "$(grep -c "^UPD 2020-12-30_03:02:16 33     ./__tests__/mock.pm$" "${{ env.CONTROLS_FILE }}" )" -eq 1 ]  \
-                && [ "$(grep -c "^UPD 2021-01-05_00:05:41 33     ./__tests__/mock.pm.bck$" "${{ env.CONTROLS_FILE }}" )" -eq 0 ] \
+                && [ "$(grep -c "^UPD 2021-01-05_22:17:34 33     ./__tests__/mock.pm.bck$" "${{ env.CONTROLS_FILE }}" )" -eq 0 ] \
                 && exit 0 || exit 1 ;;
         ".bck")
                 [ "$(grep -c "^UPD 2020-12-30_03:02:16 33     ./__tests__/mock.pm$" "${{ env.CONTROLS_FILE }}" )" -eq 0 ]  \
-                && [ "$(grep -c "^UPD 2021-01-05_00:05:41 33     ./__tests__/mock.pm.bck$" "${{ env.CONTROLS_FILE }}" )" -eq 1 ] \
+                && [ "$(grep -c "^UPD 2021-01-05_22:17:34 33     ./__tests__/mock.pm.bck$" "${{ env.CONTROLS_FILE }}" )" -eq 1 ] \
                 && exit 0 || exit 1 ;;
         ".pm.bck")
                 [ "$(grep -c "^UPD 2020-12-30_03:02:16 33     ./__tests__/mock.pm$" "${{ env.CONTROLS_FILE }}" )" -eq 0 ]  \
-                && [ "$(grep -c "^UPD 2021-01-05_00:05:41 33     ./__tests__/mock.pm.bck$" "${{ env.CONTROLS_FILE }}" )" -eq 1 ] \
+                && [ "$(grep -c "^UPD 2021-01-05_22:17:34 33     ./__tests__/mock.pm.bck$" "${{ env.CONTROLS_FILE }}" )" -eq 1 ] \
                 && exit 0 || exit 1 ;;
         ".pm|.bck")
                 [ "$(grep -c "^UPD 2020-12-30_03:02:16 33     ./__tests__/mock.pm$" "${{ env.CONTROLS_FILE }}" )" -eq 1 ]  \
-                && [ "$(grep -c "^UPD 2021-01-05_00:05:41 33     ./__tests__/mock.pm.bck$" "${{ env.CONTROLS_FILE }}" )" -eq 1 ] \
+                && [ "$(grep -c "^UPD 2021-01-05_22:17:34 33     ./__tests__/mock.pm.bck$" "${{ env.CONTROLS_FILE }}" )" -eq 1 ] \
                 && exit 0 || exit 1 ;;
         esac 
         exit 1
