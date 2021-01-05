@@ -19,8 +19,8 @@ inputs:
     required: false
     default: 'w'
 outputs:
-  time: # id of output
+  controls_content: 
     description: 'If controls file was written'
 runs:
   using: 'node12'
-  main: 'main.js'
+  main: 'dist/index.js'

@@ -1,17 +1,19 @@
-name: "Test Jobs"
+name: "Quality test job"
 
 on:
   pull_request:
   push:
-
+  create:
+    tags:
+      - v*
 
 jobs:
-  # unit tests
+  # npm unit tests
   unittest:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: [10.x, 12.x ,14.x]
+        node-version: [14.x, 15.x]
 
     steps:
     - uses: actions/checkout@v2
@@ -31,22 +33,62 @@ jobs:
       env:
         CI: true
 
-  # test action works running from the graph
+  # test action works running from the repo itself
   actiontest:
     runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        FILES_EXTENSION: [.pm, .bck, .pm.bck, .pm|.bck ]
+
+    env:
+      CONTROLS_FILE: controls_tests.txt
+      FILES_DIR: ./__tests__
+
     steps:
     - uses: actions/checkout@v2
       with:
         fetch-depth: 0
 
-    - name: Use Node.js 12
-      uses: actions/setup-node@v2
-
-    - run: npm ci
-
-    - name: Run Action
+    - name: update controls files for extension ${{ matrix.FILES_EXTENSION }} 
       uses: ./
+      id: controls
       with:
-        filename: controls_tests.txt
-        directory: ./__tests__
-        extension: .pm
+        filename: ${{ env.CONTROLS_FILE }}
+        directory: ${{ env.FILES_DIR }}
+        extension: ${{ matrix.FILES_EXTENSION }}
+
+    - name: Check if controls_tests.txt is written
+      uses: andstor/file-existence-action@v1
+      with:
+        files: ${{ env.CONTROLS_FILE }}
+        allow_failure: false
+
+    - name: Check if controls_tests.txt has correct output for extension ${{ matrix.FILES_EXTENSION }}
+      id: contentCheck
+      run: |
+        case "${{ matrix.FILES_EXTENSION }}"  in
+        ".pm")
+                [ "$(grep -c "^UPD 2020-12-30_03:02:16 33     ./__tests__/mock.pm$" "${{ env.CONTROLS_FILE }}" )" -eq 1 ]  \
+                && [ "$(grep -c "^UPD 2021-01-05_00:05:41 33     ./__tests__/mock.pm.bck$" "${{ env.CONTROLS_FILE }}" )" -eq 0 ] \
+                && exit 0 || exit 1 ;;
+        ".bck")
+                [ "$(grep -c "^UPD 2020-12-30_03:02:16 33     ./__tests__/mock.pm$" "${{ env.CONTROLS_FILE }}" )" -eq 0 ]  \
+                && [ "$(grep -c "^UPD 2021-01-05_00:05:41 33     ./__tests__/mock.pm.bck$" "${{ env.CONTROLS_FILE }}" )" -eq 1 ] \
+                && exit 0 || exit 1 ;;
+        ".pm.bck")
+                [ "$(grep -c "^UPD 2020-12-30_03:02:16 33     ./__tests__/mock.pm$" "${{ env.CONTROLS_FILE }}" )" -eq 0 ]  \
+                && [ "$(grep -c "^UPD 2021-01-05_00:05:41 33     ./__tests__/mock.pm.bck$" "${{ env.CONTROLS_FILE }}" )" -eq 1 ] \
+                && exit 0 || exit 1 ;;
+        ".pm|.bck")
+                [ "$(grep -c "^UPD 2020-12-30_03:02:16 33     ./__tests__/mock.pm$" "${{ env.CONTROLS_FILE }}" )" -eq 1 ]  \
+                && [ "$(grep -c "^UPD 2021-01-05_00:05:41 33     ./__tests__/mock.pm.bck$" "${{ env.CONTROLS_FILE }}" )" -eq 1 ] \
+                && exit 0 || exit 1 ;;
+        esac 
+        exit 1
+
+    - name: Echo controls output
+      run: |
+        echo "${{ steps.controls.outputs.controls_content }}"
+        
+
