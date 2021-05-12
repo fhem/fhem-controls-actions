@@ -16,7 +16,7 @@ jobs:
         node-version: [14.x, 15.x]
 
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v2.3.4
       with:
         fetch-depth: 0
 
@@ -46,7 +46,7 @@ jobs:
       FILES_DIR: ./__tests__
 
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v2.3.4
       with:
         fetch-depth: 0
 
