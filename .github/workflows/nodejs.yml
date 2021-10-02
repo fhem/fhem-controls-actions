@@ -35,6 +35,7 @@ jobs:
 
   # test action works running from the repo itself
   actiontest:
+    needs: unittest
     runs-on: ubuntu-latest
 
     strategy:
@@ -90,5 +91,22 @@ jobs:
     - name: Echo controls output
       run: |
         echo "${{ steps.controls.outputs.controls_content }}"
-        
-
+  
+  # generate new package
+  ncc:
+    needs: actiontest
+    runs-on: ubuntu-latest
+    if: ${{ github.event_name == 'push' }}
+    steps:
+    - uses: actions/checkout@v2.3.4
+    - name: Extract branch name
+      uses: vazco/github-actions-branch-name@v1
+      id: branch
+    - name: Prepare Node.js 
+      uses: actions/setup-node@v2.4.1
+    - uses: tool3/ncc@master
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        src: 'main.js'
+        ncc_args: '-o,dist,--source-map,--license,licenses.txt'
+        branch: ${{ steps.branch.outputs.branch_name }}
