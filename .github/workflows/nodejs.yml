@@ -109,4 +109,4 @@ jobs:
         github_token: ${{ secrets.GITHUB_TOKEN }}
         src: 'main.js'
         ncc_args: '-o, dist, --source-map, --license, licenses.txt'
-        branch: ${{ steps.branch.outputs.branch_name }}_dist
+        branch: predist
