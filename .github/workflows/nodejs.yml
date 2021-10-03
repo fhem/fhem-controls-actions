@@ -104,9 +104,15 @@ jobs:
       id: branch
     - name: Prepare Node.js 
       uses: actions/setup-node@v2.4.1
-    - uses: tool3/ncc@master
+    - uses: sidey79/ncc@v0.9.1
       with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
         src: 'main.js'
         ncc_args: '-o,dist,--source-map,--license,licenses.txt'
-        branch: ${{ steps.branch.outputs.branch_name }}
+    - uses: EndBug/add-and-commit@v7
+      with:
+        message: Commit Dist file
+        committer_name: GitHub Actions
+        committer_email: actions@github.com
+        add: 'dist'
+        signoff: true
+        push: true
