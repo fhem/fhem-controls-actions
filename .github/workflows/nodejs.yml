@@ -100,7 +100,7 @@ jobs:
     steps:
     - uses: actions/checkout@v2.3.4
     - name: Extract branch name
-      uses: vazco/github-actions-branch-name@v1
+      uses: vazco/github-actions-branch-name@v1.0.1
       id: branch
     - name: Prepare Node.js 
       uses: actions/setup-node@v2.4.1
