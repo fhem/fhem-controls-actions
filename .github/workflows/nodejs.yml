@@ -113,6 +113,6 @@ jobs:
         message: Commit Dist file
         committer_name: GitHub Actions
         committer_email: actions@github.com
-        add: 'dist'
+        add: 'dist/.'
         signoff: true
         push: true
