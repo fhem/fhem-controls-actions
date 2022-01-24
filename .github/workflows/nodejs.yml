@@ -108,7 +108,7 @@ jobs:
       with:
         src: 'main.js'
         ncc_args: '-o,dist,--source-map,--license,licenses.txt'
-    - uses: EndBug/add-and-commit@v7
+    - uses: EndBug/add-and-commit@v8.0.1
       with:
         message: Commit Dist file
         committer_name: GitHub Actions
