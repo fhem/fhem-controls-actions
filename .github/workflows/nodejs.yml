@@ -16,7 +16,7 @@ jobs:
         node-version: [14.x, 15.x]
 
     steps:
-    - uses: actions/checkout@v2.4.0
+    - uses: actions/checkout@v3
       with:
         fetch-depth: 0
 
@@ -47,7 +47,7 @@ jobs:
       FILES_DIR: ./__tests__
 
     steps:
-    - uses: actions/checkout@v2.4.0
+    - uses: actions/checkout@v3
       with:
         fetch-depth: 0
 
@@ -98,7 +98,7 @@ jobs:
     runs-on: ubuntu-latest
     if: ${{ github.event_name == 'push' }}
     steps:
-    - uses: actions/checkout@v2.4.0
+    - uses: actions/checkout@v3
     - name: Extract branch name
       uses: vazco/github-actions-branch-name@v1.0.1
       id: branch
