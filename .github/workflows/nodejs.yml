@@ -21,7 +21,7 @@ jobs:
         fetch-depth: 0
 
     - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v2.5.1
+      uses: actions/setup-node@v3
       with:
         node-version: ${{ matrix.node-version }}
     
@@ -103,7 +103,7 @@ jobs:
       uses: vazco/github-actions-branch-name@v1.0.1
       id: branch
     - name: Prepare Node.js 
-      uses: actions/setup-node@v2.5.1
+      uses: actions/setup-node@v3
     - uses: sidey79/ncc@v1.0.0
       with:
         src: 'main.js'
