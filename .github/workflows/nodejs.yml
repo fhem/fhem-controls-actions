@@ -37,6 +37,9 @@ jobs:
   actiontest:
     needs: unittest
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [16.x, 18.x]
 
     strategy:
       matrix:
@@ -54,7 +57,7 @@ jobs:
     - name: Prepare Node.js 
       uses: actions/setup-node@v3
       with:
-        node-version: 16
+        node-version: ${{ matrix.node-version }}
 
     - uses: sidey79/ncc@v1.0.0
       with:
