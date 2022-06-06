@@ -51,6 +51,9 @@ jobs:
       with:
         fetch-depth: 0
 
+    - name: Prepare Node.js 
+      uses: actions/setup-node@v3
+
     - name: update controls files for extension ${{ matrix.FILES_EXTENSION }} 
       uses: ./
       id: controls
