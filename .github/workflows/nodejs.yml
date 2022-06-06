@@ -37,13 +37,11 @@ jobs:
   actiontest:
     needs: unittest
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        node-version: [16.x, 18.x]
 
     strategy:
       matrix:
         FILES_EXTENSION: [.pm, .bck, .pm.bck, .pm|.bck ]
+        node-version: [16.x, 18.x]
 
     env:
       CONTROLS_FILE: controls_tests.txt
