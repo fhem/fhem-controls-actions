@@ -53,6 +53,7 @@ jobs:
 
     - name: Prepare Node.js 
       uses: actions/setup-node@v3
+      node-version: 14
 
     - name: update controls files for extension ${{ matrix.FILES_EXTENSION }} 
       uses: ./
@@ -107,6 +108,8 @@ jobs:
       id: branch
     - name: Prepare Node.js 
       uses: actions/setup-node@v3
+      node-version: 14
+
     - uses: sidey79/ncc@v1.0.0
       with:
         src: 'main.js'
