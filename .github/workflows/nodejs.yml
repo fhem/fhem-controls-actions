@@ -56,6 +56,11 @@ jobs:
       with:
         node-version: 14
 
+    - uses: sidey79/ncc@v1.0.0
+      with:
+        src: 'main.js'
+        ncc_args: '-o,dist,--source-map,--license,licenses.txt'
+
     - name: update controls files for extension ${{ matrix.FILES_EXTENSION }} 
       uses: ./
       id: controls
