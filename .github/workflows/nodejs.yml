@@ -13,7 +13,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: [14.x, 15.x, 16.x]
+        node-version: [16.x, 18.x]
 
     steps:
     - uses: actions/checkout@v3
@@ -54,7 +54,7 @@ jobs:
     - name: Prepare Node.js 
       uses: actions/setup-node@v3
       with:
-        node-version: 14
+        node-version: 16
 
     - uses: sidey79/ncc@v1.0.0
       with:
@@ -115,7 +115,7 @@ jobs:
     - name: Prepare Node.js 
       uses: actions/setup-node@v3
       with:
-        node-version: 14
+        node-version: 16
 
     - uses: sidey79/ncc@v1.0.0
       with:
