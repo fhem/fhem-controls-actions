@@ -74,7 +74,7 @@ jobs:
       uses: andstor/file-existence-action@v2.0.0
       with:
         files: ${{ env.CONTROLS_FILE }}
-        allow_failure: false
+        fail: false
 
     - name: Check if controls_tests.txt has correct output for extension ${{ matrix.FILES_EXTENSION }}
       id: contentCheck
