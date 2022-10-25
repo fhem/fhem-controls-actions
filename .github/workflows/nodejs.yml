@@ -128,5 +128,5 @@ jobs:
         committer_name: GitHub Actions
         committer_email: actions@github.com
         add: 'dist'
-        signoff: true
+        commit: --signoff
         push: true
