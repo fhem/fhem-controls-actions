@@ -122,11 +122,11 @@ jobs:
       with:
         src: 'main.js'
         ncc_args: '-o,dist,--source-map,--license,licenses.txt'
-    - uses: EndBug/add-and-commit@v7
+    - uses: EndBug/add-and-commit@v9
       with:
         message: Commit Dist file
         committer_name: GitHub Actions
         committer_email: actions@github.com
         add: 'dist'
-        signoff: true
+        commit: --signoff
         push: true
