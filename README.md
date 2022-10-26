@@ -36,7 +36,7 @@ Same content which is also written into the controls file
 ```
     steps: 
     - name: Checkout Repostory
-      uses: actions/checkout@v1
+      uses: actions/checkout@v3
       with:
         fetch-depth: 0
 
@@ -45,7 +45,7 @@ Same content which is also written into the controls file
 2. You can create the controls file
 ```
     - name: update controls files
-      uses: fhem/fhem-controls-actions@v2.00b
+      uses: fhem/fhem-controls-actions@v2.0.3
       with:
         filename: controls_rsl.txt 
 ```
