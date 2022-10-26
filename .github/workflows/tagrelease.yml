@@ -14,9 +14,8 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v3
-      - name: Auto tag
-        uses: Klemensas/action-autotag@1.2.3
+      - name: Create tag automatic
+        uses: butlerlogic/action-autotag@1.1.2
         with:
-          GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
-          package_root: ./
+          root: ./
           tag_prefix: "v"
