@@ -19,3 +19,4 @@ jobs:
         with:
           root: ./
           tag_prefix: "v"
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
