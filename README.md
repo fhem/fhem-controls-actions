@@ -45,7 +45,7 @@ Same content which is also written into the controls file
 2. You can create the controls file
 ```
     - name: update controls files
-      uses: fhem/fhem-controls-actions@v2.0.3
+      uses: fhem/fhem-controls-actions@v2.1.0
       with:
         filename: controls_rsl.txt 
 ```
