@@ -13,7 +13,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: [16.x, 18.x]
+        node-version: [18.x, 20.x]
 
     steps:
     - uses: actions/checkout@v4
@@ -41,7 +41,7 @@ jobs:
     strategy:
       matrix:
         FILES_EXTENSION: [.pm, .bck, .pm.bck, .pm|.bck ]
-        node-version: [16.x, 18.x]
+        node-version: [18.x, 20.x]
 
     env:
       CONTROLS_FILE: controls_tests.txt
@@ -113,7 +113,7 @@ jobs:
     - name: Prepare Node.js 
       uses: actions/setup-node@v4
       with:
-        node-version: 16
+        node-version: 20
 
     - uses: sidey79/ncc@v2.1.0
       with:
