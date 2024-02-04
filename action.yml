@@ -22,5 +22,5 @@ outputs:
   controls_content: 
     description: 'If controls file was written'
 runs:
-  using: 'node16'
+  using: 'node20'
   main: 'dist/index.js'
