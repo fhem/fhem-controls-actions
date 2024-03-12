@@ -15,7 +15,7 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v4
       - name: Create tag automatic
-        uses: butlerlogic/action-autotag@1.1.2
+        uses: butlerlogic/action-autotag@1.1.4
         env:
           GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
         with:
