@@ -57,7 +57,7 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
 
-    - uses: sidey79/ncc@v2.3.0
+    - uses: sidey79/ncc@v2.3.1
       with:
         src: 'main.js'
         ncc_args: '-o,dist,--source-map,--license,licenses.txt'
@@ -115,7 +115,7 @@ jobs:
       with:
         node-version: 20
 
-    - uses: sidey79/ncc@v2.3.0
+    - uses: sidey79/ncc@v2.3.1
       with:
         src: 'main.js'
         ncc_args: '-o,dist,--source-map,--license,licenses.txt'
