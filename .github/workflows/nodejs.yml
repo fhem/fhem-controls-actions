@@ -41,7 +41,7 @@ jobs:
     strategy:
       matrix:
         FILES_EXTENSION: [.pm, .bck, .pm.bck, .pm|.bck ]
-        node-version: [18.x, 20.x]
+        node-version: [20.x, 22.x, 24.x]
 
     env:
       CONTROLS_FILE: controls_tests.txt
