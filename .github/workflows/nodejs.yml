@@ -16,7 +16,7 @@ jobs:
         node-version: [20.x, 22.x, 24.x]
 
     steps:
-    - uses: actions/checkout@v5
+    - uses: actions/checkout@v6
       with:
         fetch-depth: 0
 
@@ -48,7 +48,7 @@ jobs:
       FILES_DIR: ./__tests__
 
     steps:
-    - uses: actions/checkout@v5
+    - uses: actions/checkout@v6
       with:
         fetch-depth: 0
 
@@ -109,7 +109,7 @@ jobs:
     runs-on: ubuntu-latest
     if: ${{ github.event_name == 'push' }}
     steps:
-    - uses: actions/checkout@v5
+    - uses: actions/checkout@v6
     - name: Prepare Node.js 
       uses: actions/setup-node@v6
       with:
