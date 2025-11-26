@@ -1,6 +1,6 @@
 {
   "name": "fhem-controls-actions",
-  "version": "2.3.0",
+  "version": "3.0.0",
   "description": "This action creates FHEM controls file via github actions which is compatible with `fhem update all` and `fhem update add` command.",
   "main": "main.js",
   "scripts": {
@@ -34,3 +34,5 @@
     "jest": "^30.2.0"
   }
 }
+
+
