@@ -1,6 +1,18 @@
 const fs = require('fs');
 const path = require('path');
 
+function normalizeControlsPath (outputDirectory, fullPath) {
+	let relativePath = path.relative(outputDirectory, path.resolve(fullPath));
+
+	relativePath = relativePath.replace(/^(?:\.\.\/|\.\/)+/, '');
+
+	if (relativePath === '' || relativePath === '.' || relativePath === '..') {
+		relativePath = path.basename(fullPath);
+	}
+
+	return relativePath;
+}
+
 function getDataFromPath (searchPath, extension, outputFilename) {
 	const outputDirectory = path.dirname(path.resolve(outputFilename || searchPath));
 	const dir = fs.readdirSync(searchPath);
@@ -15,13 +27,7 @@ function getDataFromPath (searchPath, extension, outputFilename) {
 		const fileSizeInBytes = fs.statSync(fullPath).size.toString();
 		const { spawnSync } = require('child_process');
 		const timestamp = spawnSync('git', ['log', '--pretty=format:%cd', '-n 1', '--date=format:%Y-%m-%d_%H:%M:%S', '--', fullPath]).stdout.toString();
-		let relativePath = path.relative(outputDirectory, path.resolve(fullPath));
-
-		if (relativePath === '') {
-			relativePath = '.';
-		} else if (!relativePath.startsWith('.')) {
-			relativePath = './' + relativePath;
-		}
+		const relativePath = normalizeControlsPath(outputDirectory, fullPath);
 
 		response.push('UPD ' + timestamp + ' ' + fileSizeInBytes + ' ' + relativePath);
 	}

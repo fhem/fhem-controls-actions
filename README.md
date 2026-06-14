@@ -7,7 +7,7 @@ More details about this command at the [Fhem Wiki](https://wiki.fhem.de/wiki/Upd
 
 ### `filename`
 
-**Required** The name of controls file. Should be named `controls_<project/module>.txt`. The generated `UPD` paths are written relative to the directory where this controls file is stored.
+**Required** The name of controls file. Should be named `controls_<project/module>.txt`. The generated `UPD` paths are written relative to the directory where this controls file is stored and are normalized to start with the next folder or file name, without leading `./` or `../`.
 
 ### `directory`
 
@@ -27,7 +27,7 @@ If you want to append data, to an existing controls file, then you can specify t
 
 ## Outputs
 ### `controls_content`
-Same content which is also written into the controls file. If `filename` points to a subdirectory, the paths in the output are still relative to that controls file location.
+Same content which is also written into the controls file. Paths never start with `./` or `../`; they begin with the next folder or file name relative to the controls file location.
 
 
 ## Example usage
