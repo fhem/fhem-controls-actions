@@ -31325,28 +31325,43 @@ module.exports = {
 /***/ 4883:
 /***/ ((module, __unused_webpack_exports, __nccwpck_require__) => {
 
-const fs=__nccwpck_require__(9896);
+const fs = __nccwpck_require__(9896);
+const path = __nccwpck_require__(6928);
 
-function getDataFromPath (path, extension) {
+function normalizeControlsPath (outputDirectory, fullPath) {
+	let relativePath = path.relative(outputDirectory, path.resolve(fullPath));
 
-	let dir = fs.readdirSync( path );
+	relativePath = relativePath.replace(/^(?:\.\.\/|\.\/)+/, '');
 
-	extension = extension.replace(/[.]/g,'\\$&'); // Escape dots in extensions
-	let filt= new RegExp('('+extension+')$', 'ig');
-	// console.log(filt.toString());
+	if (relativePath === '' || relativePath === '.' || relativePath === '..') {
+		relativePath = path.basename(fullPath);
+	}
 
-	const files = dir.filter( elm => elm.match(filt)); 
-	var response= new Array();
-	for (let file of files) {
-		const fileSizeInBytes = fs.statSync(path+'/'+file).size.toString();
-		const { spawnSync  } = __nccwpck_require__(5317);
-		const timestamp = spawnSync('git', ['log', '--pretty=format:%cd', '-n 1', '--date=format:%Y-%m-%d_%H:%M:%S' ,'--', path+'/'+file]).stdout.toString() ;
-		response.push("UPD "+timestamp+" "+fileSizeInBytes+" "+path+"/"+file);
+	return relativePath;
+}
+
+function getDataFromPath (searchPath, extension, outputFilename) {
+	const outputDirectory = path.dirname(path.resolve(outputFilename || searchPath));
+	const dir = fs.readdirSync(searchPath);
+
+	extension = extension.replace(/[.]/g, '\\$&'); // Escape dots in extensions
+	const filt = new RegExp('(' + extension + ')$', 'ig');
+	const files = dir.filter(elm => elm.match(filt));
+	const response = [];
+
+	for (const file of files) {
+		const fullPath = path.join(searchPath, file);
+		const fileSizeInBytes = fs.statSync(fullPath).size.toString();
+		const { spawnSync } = __nccwpck_require__(5317);
+		const timestamp = spawnSync('git', ['log', '--pretty=format:%cd', '-n 1', '--date=format:%Y-%m-%d_%H:%M:%S', '--', fullPath]).stdout.toString();
+		const relativePath = normalizeControlsPath(outputDirectory, fullPath);
+
+		response.push('UPD ' + timestamp + ' ' + fileSizeInBytes + ' ' + relativePath);
 	}
 
 	return response;
-
 }
+
 module.exports = getDataFromPath;
 
 
@@ -31673,7 +31688,7 @@ var extension=core.getInput('extension');
 var filemode=core.getInput('writemode');
 
 core.info('parsing r controls file entrys in path: ' + path);
-var update_commands = getDataFromPath(path, extension);
+var update_commands = getDataFromPath(path, extension, filename);
 
 core.info('Try to open file: ' + filename + ' with filemode ' + filemode);
 var file = fs.createWriteStream(filename,{ flags: filemode });
@@ -31683,6 +31698,7 @@ file.end();
 core.info('controls file' + filename + ' written');
 
 core.setOutput('controls_content',update_commands);
+
 module.exports = __webpack_exports__;
 /******/ })()
 ;
