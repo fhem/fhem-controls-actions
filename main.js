@@ -8,7 +8,7 @@ var extension=core.getInput('extension');
 var filemode=core.getInput('writemode');
 
 core.info('parsing r controls file entrys in path: ' + path);
-var update_commands = getDataFromPath(path, extension);
+var update_commands = getDataFromPath(path, extension, filename);
 
 core.info('Try to open file: ' + filename + ' with filemode ' + filemode);
 var file = fs.createWriteStream(filename,{ flags: filemode });
