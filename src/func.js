@@ -1,4 +1,5 @@
-const fs=require('fs');
+import fs from 'node:fs';
+import { spawnSync } from 'node:child_process';
 
 function getDataFromPath (path, extension) {
 
@@ -12,7 +13,6 @@ function getDataFromPath (path, extension) {
 	var response= new Array();
 	for (let file of files) {
 		const fileSizeInBytes = fs.statSync(path+'/'+file).size.toString();
-		const { spawnSync  } = require('child_process');
 		const timestamp = spawnSync('git', ['log', '--pretty=format:%cd', '-n 1', '--date=format:%Y-%m-%d_%H:%M:%S' ,'--', path+'/'+file]).stdout.toString() ;
 		response.push("UPD "+timestamp+" "+fileSizeInBytes+" "+path+"/"+file);
 	}
@@ -20,4 +20,4 @@ function getDataFromPath (path, extension) {
 	return response;
 
 }
-module.exports = getDataFromPath;
+export default getDataFromPath;
