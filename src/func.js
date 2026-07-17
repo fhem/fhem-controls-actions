@@ -1,5 +1,6 @@
-const fs = require('fs');
-const path = require('path');
+import fs from 'node:fs';
+import path from 'node:path';
+import { spawnSync } from 'node:child_process';
 
 function normalizeControlsPath (outputDirectory, fullPath) {
 	let relativePath = path.relative(outputDirectory, path.resolve(fullPath));
@@ -25,7 +26,6 @@ function getDataFromPath (searchPath, extension, outputFilename) {
 	for (const file of files) {
 		const fullPath = path.join(searchPath, file);
 		const fileSizeInBytes = fs.statSync(fullPath).size.toString();
-		const { spawnSync } = require('child_process');
 		const timestamp = spawnSync('git', ['log', '--pretty=format:%cd', '-n 1', '--date=format:%Y-%m-%d_%H:%M:%S', '--', fullPath]).stdout.toString();
 		const relativePath = normalizeControlsPath(outputDirectory, fullPath);
 
@@ -35,4 +35,4 @@ function getDataFromPath (searchPath, extension, outputFilename) {
 	return response;
 }
 
-module.exports = getDataFromPath;
+export default getDataFromPath;

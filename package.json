@@ -1,12 +1,13 @@
 {
   "name": "fhem-controls-actions",
   "version": "4.0.0",
+  "type": "module",
   "description": "This action creates FHEM controls file via github actions which is compatible with `fhem update all` and `fhem update add` command.",
   "main": "main.js",
   "scripts": {
     "lint": "eslint .",
     "prepare": "ncc build main.js -o dist --source-map --license licenses.txt",
-    "test": "jest",
+    "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js",
     "all": "npm run lint && npm run prepare && npm run test"
   },
   "repository": {
@@ -26,7 +27,7 @@
   },
   "homepage": "https://github.com/fhem/fhem-controls-actions#readme",
   "dependencies": {
-    "@actions/core": "^2.0.2"
+    "@actions/core": "^3.0.0"
   },
   "devDependencies": {
     "@vercel/ncc": "^0.44.1",
@@ -34,5 +35,3 @@
     "jest": "^30.3.0"
   }
 }
-
-

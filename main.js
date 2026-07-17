@@ -1,6 +1,6 @@
-const fs=require('fs');
-const core = require('@actions/core');
-const getDataFromPath = require('./src/func');
+import fs from 'node:fs';
+import * as core from '@actions/core';
+import getDataFromPath from './src/func.js';
 
 var filename = core.getInput('filename');
 var path=core.getInput('directory');
