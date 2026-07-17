@@ -1,4 +1,4 @@
-const getDataFromPath = require('../src/func');
+import getDataFromPath from '../src/func.js';
 
 test('gen controls content for pm file', () => {
   const data =  getDataFromPath('./__tests__', '.pm');
