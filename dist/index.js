@@ -31059,31 +31059,48 @@ function getIDToken(aud) {
  */
 
 //# sourceMappingURL=core.js.map
+;// CONCATENATED MODULE: external "node:path"
+const external_node_path_namespaceObject = __WEBPACK_EXTERNAL_createRequire(import.meta.url)("node:path");
 ;// CONCATENATED MODULE: external "node:child_process"
 const external_node_child_process_namespaceObject = __WEBPACK_EXTERNAL_createRequire(import.meta.url)("node:child_process");
 ;// CONCATENATED MODULE: ./src/func.js
 
 
 
-function getDataFromPath (path, extension) {
 
-	let dir = external_node_fs_namespaceObject.readdirSync( path );
+function normalizeControlsPath (outputDirectory, fullPath) {
+	let relativePath = external_node_path_namespaceObject.relative(outputDirectory, external_node_path_namespaceObject.resolve(fullPath));
 
-	extension = extension.replace(/[.]/g,'\\$&'); // Escape dots in extensions
-	let filt= new RegExp('('+extension+')$', 'ig');
-	// console.log(filt.toString());
+	relativePath = relativePath.replace(/^(?:\.\.\/|\.\/)+/, '');
 
-	const files = dir.filter( elm => elm.match(filt)); 
-	var response= new Array();
-	for (let file of files) {
-		const fileSizeInBytes = external_node_fs_namespaceObject.statSync(path+'/'+file).size.toString();
-		const timestamp = (0,external_node_child_process_namespaceObject.spawnSync)('git', ['log', '--pretty=format:%cd', '-n 1', '--date=format:%Y-%m-%d_%H:%M:%S' ,'--', path+'/'+file]).stdout.toString() ;
-		response.push("UPD "+timestamp+" "+fileSizeInBytes+" "+path+"/"+file);
+	if (relativePath === '' || relativePath === '.' || relativePath === '..') {
+		relativePath = external_node_path_namespaceObject.basename(fullPath);
+	}
+
+	return relativePath;
+}
+
+function getDataFromPath (searchPath, extension, outputFilename) {
+	const outputDirectory = external_node_path_namespaceObject.dirname(external_node_path_namespaceObject.resolve(outputFilename || searchPath));
+	const dir = external_node_fs_namespaceObject.readdirSync(searchPath);
+
+	extension = extension.replace(/[.]/g, '\\$&'); // Escape dots in extensions
+	const filt = new RegExp('(' + extension + ')$', 'ig');
+	const files = dir.filter(elm => elm.match(filt));
+	const response = [];
+
+	for (const file of files) {
+		const fullPath = external_node_path_namespaceObject.join(searchPath, file);
+		const fileSizeInBytes = external_node_fs_namespaceObject.statSync(fullPath).size.toString();
+		const timestamp = (0,external_node_child_process_namespaceObject.spawnSync)('git', ['log', '--pretty=format:%cd', '-n 1', '--date=format:%Y-%m-%d_%H:%M:%S', '--', fullPath]).stdout.toString();
+		const relativePath = normalizeControlsPath(outputDirectory, fullPath);
+
+		response.push('UPD ' + timestamp + ' ' + fileSizeInBytes + ' ' + relativePath);
 	}
 
 	return response;
-
 }
+
 /* harmony default export */ const func = (getDataFromPath);
 
 ;// CONCATENATED MODULE: ./main.js
@@ -31097,7 +31114,7 @@ var extension=getInput('extension');
 var filemode=getInput('writemode');
 
 info('parsing r controls file entrys in path: ' + main_path);
-var update_commands = func(main_path, extension);
+var update_commands = func(main_path, extension, filename);
 
 info('Try to open file: ' + filename + ' with filemode ' + filemode);
 var file = external_node_fs_namespaceObject.createWriteStream(filename,{ flags: filemode });
@@ -31107,5 +31124,6 @@ file.end();
 info('controls file' + filename + ' written');
 
 setOutput('controls_content',update_commands);
+
 
 //# sourceMappingURL=index.js.map
