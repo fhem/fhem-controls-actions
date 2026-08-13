@@ -1,4 +1,4 @@
-# fhem-controls-actions JavaScript action (Version 2)
+# fhem-controls-actions JavaScript action (Version 4)
 
 This action creates FHEM controls file via github actions which is compatible with `update all <url>` and `update add <url>` command.
 More details about this command at the [Fhem Wiki](https://wiki.fhem.de/wiki/Update#update_all).
@@ -36,7 +36,7 @@ Same content which is also written into the controls file. Paths never start wit
 ```
     steps: 
     - name: Checkout Repostory
-      uses: actions/checkout@v3
+      uses: actions/checkout@v7
       with:
         fetch-depth: 0
 
@@ -45,7 +45,7 @@ Same content which is also written into the controls file. Paths never start wit
 2. You can create the controls file
 ```
     - name: update controls files
-      uses: fhem/fhem-controls-actions@v2.1.0
+      uses: fhem/fhem-controls-actions@v4.0.1
       with:
         filename: controls/controls_rsl.txt
 ```
